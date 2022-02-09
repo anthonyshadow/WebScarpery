@@ -16,7 +16,7 @@ import requests
 # ---------------------------------------------------------------------------------------------
 
 
-# Parsing our soup
+# Parsing our soup, prints the link name and the link itself
 
 search = input("Search for: ")
 params = {"q": search}
@@ -34,3 +34,20 @@ for item in links:
     if item_text and item_href:
         print(item_text)
         print(item_href)
+        # Navigating items through parents and children of item
+        print("Summary:", item.find("a").parent.parent.find("p").text)
+
+        # All children
+
+        # children = item.children
+        # for child in children:
+        #     print("Child", child)
+
+        # Sibling
+
+        children = item.find("h2")
+        #can do previous sibling instead of next if you want to go up
+        print("Next Sibling of the h2:", children.next_sibling)
+
+
+
